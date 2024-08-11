@@ -1,7 +1,7 @@
 from .models import Book
 
 
-books = Book.object.all()
+books = Book.object.get(published_year="1984")
 
 
 print(books)
