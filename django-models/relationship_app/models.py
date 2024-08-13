@@ -10,7 +10,7 @@ class Author(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=50)
-    Author = models.ForeignKey(Author, null=False, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, null=False, on_delete=models.CASCADE)
     def __str__(self):
         pass
 
