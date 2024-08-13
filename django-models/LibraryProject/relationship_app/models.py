@@ -12,6 +12,8 @@ class Author(models.Model):
         managed = True
         verbose_name = 'Author'
         verbose_name_plural = 'Authors'
+    def __str__ (self):
+        return "%s"%self.name
 
 class Book(models.Model):
     title = models.CharField(max_length=50)
