@@ -32,6 +32,6 @@ class Library(models.Model):
         verbose_name = 'Library'
         verbose_name_plural = 'Librarys'
         
-class librarian(models.Model):
+class Librarian(models.Model):
     name = models.CharField(max_length=50)
     library = models.OneToOneField(Library, null=False,  on_delete=models.CASCADE)
