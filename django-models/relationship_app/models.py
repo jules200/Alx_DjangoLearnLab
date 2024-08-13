@@ -5,15 +5,8 @@ from django.db import models
 class Author(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
-        pass
+        return self.name
 
-    class Meta:
-        db_table = ''
-        managed = True
-        verbose_name = 'Author'
-        verbose_name_plural = 'Authors'
-    def __str__ (self):
-        return "%s"%self.name
 
 class Book(models.Model):
     title = models.CharField(max_length=50)
