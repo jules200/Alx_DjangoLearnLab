@@ -1,5 +1,6 @@
 from django.views.generic.detail import DetailView
 from django.shortcuts import render
+from django.contrib.auth import login, logout
 from .models import Library
 from .models import Book
 
@@ -19,3 +20,9 @@ class LibraryDetailView(DetailView):
         context['books'] = self.object.books.all()  # Retrieve all books related to this library
         return context
     
+def loginview(request):
+    pass 
+def logoutnview(request):
+    pass  
+def registrationview(request):
+    pass  
