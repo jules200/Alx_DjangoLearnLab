@@ -35,10 +35,10 @@ def register(request):
     return render(request, 'relationship_app/register.html', {'form': form})
 
 # Built-in login view
-class CustomLoginView(LoginView):
+class LoginView(LoginView):
     template_name = 'relationship_app/login.html'
 
 # Built-in logout view
-class CustomLogoutView(LogoutView):
+class LogoutView(LogoutView):
     template_name = 'relationship_app/logout.html'
     next_page = reverse_lazy('login')
