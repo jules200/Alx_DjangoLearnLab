@@ -6,13 +6,18 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
+@login_required
+@user_passes_test(is_librarian)
 def bookslist(request):
     books = Book.objects.all()
     
     return render(request, "relationship_app/list_books.html")
 
+@login_required
+@user_passes_test(is_librarian)
 class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
