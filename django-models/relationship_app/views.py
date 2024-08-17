@@ -1,8 +1,11 @@
 from django.views.generic.detail import DetailView
-from django.shortcuts import render
 from django.contrib.auth import login, logout
 from .models import Library
 from .models import Book
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 
 # Create your views here.
 def bookslist(request):
