@@ -20,9 +20,22 @@ class LibraryDetailView(DetailView):
         context['books'] = self.object.books.all()  # Retrieve all books related to this library
         return context
     
-def loginview(request):
-    pass 
-def logoutnview(request):
-    pass  
-def registrationview(request):
-    pass  
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log in the user automatically after registration
+            return redirect('book-list')  # Redirect to the book list view after successful registration
+    else:
+        form = UserCreationForm()
+    return render(request, 'relationship_app/register.html', {'form': form})
+
+# Built-in login view
+class CustomLoginView(LoginView):
+    template_name = 'relationship_app/login.html'
+
+# Built-in logout view
+class CustomLogoutView(LogoutView):
+    template_name = 'relationship_app/logout.html'
+    next_page = reverse_lazy('login')
