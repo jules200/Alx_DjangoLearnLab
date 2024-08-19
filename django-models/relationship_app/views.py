@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
-def Admin(user):
+def role_check(user):
     return user.userprofile.role == 'Admin'
 
 @login_required
