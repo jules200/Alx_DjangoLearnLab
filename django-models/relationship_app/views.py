@@ -13,7 +13,7 @@ def Admin(user):
     return user.userprofile.role == 'Admin'
 
 @login_required
-@user_passes_test(is_librarian)
+@user_passes_test(Admin)
 def bookslist(request):
     books = Book.objects.all()
     
