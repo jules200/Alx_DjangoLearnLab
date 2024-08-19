@@ -9,10 +9,10 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
-def role_check(user,role):
-    return user.userprofile.role and user.userprofile.role == role
+def role_check(user):
+    return user.userprofile.role
 
-@user_passes_test(lambda u: role_check(u, 'Admin'))
+@user_passes_test(role_check(user) == "Admin")
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 

@@ -8,3 +8,5 @@ librarian=Librarian.objects.get(library=library_name)
 books.all()
 
 # @user_passes_test(lambda u: role_check(u, 'Admin'))
+# def role_check(user,role):
+#     return user.userprofile.role and user.userprofile.role == role
