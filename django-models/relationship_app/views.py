@@ -9,6 +9,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
+def is_admin(user):
+    return user.userprofile.role == 'Admin'
+
 @login_required
 @user_passes_test(is_librarian)
 def bookslist(request):
