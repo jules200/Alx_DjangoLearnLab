@@ -13,7 +13,7 @@ def Admin(user):
     return user.userprofile.role == 'Admin'
 
 @login_required
-@user_passes_test(Admin)
+@user_passes_test(lambda u: role_check(u, 'Admin'))
 def adminview(request):
     return render(request, 'relationship_app/admin_view.html')
 
