@@ -19,7 +19,7 @@ def bookslist(request):
     
     return render(request, "relationship_app/list_books.html")
 
-@user_passes_test(lambda u: Admin(Admin))
+@user_passes_test(lambda u: role_check(u, 'Admin'))
 class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
