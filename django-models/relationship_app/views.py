@@ -19,8 +19,7 @@ def bookslist(request):
     
     return render(request, "relationship_app/list_books.html")
 
-@login_required
-@user_passes_test(is_librarian)
+@user_passes_test(Admin)
 class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
