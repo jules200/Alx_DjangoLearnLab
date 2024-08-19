@@ -27,7 +27,7 @@ class LibraryDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['books'] = self.object.books.all()
         return context
-    
+@user_passes_test(is_admin)
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
