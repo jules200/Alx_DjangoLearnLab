@@ -9,17 +9,20 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
-def role_check(user, role):
-    return user.userprofile.role and user.userprofile.role == role
+def Admin(user):
+    return user.userprofile.role == 'Admin'
 
 @login_required
 @user_passes_test(Admin)
+def adminview(request):
+    return render(request, 'relationship_app/admin_view.html')
+
 def bookslist(request):
     books = Book.objects.all()
     
     return render(request, "relationship_app/list_books.html")
 
-@user_passes_test(lambda u: role_check(u, 'Admin'))
+@user_passes_test(Admin)
 class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
