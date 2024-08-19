@@ -13,7 +13,7 @@ def role_check(user,role):
     return user.userprofile.role and user.userprofile.role == role
 
 @user_passes_test(lambda u: role_check(u, 'Admin'))
-def AdminView(request):
+def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
 def bookslist(request):

@@ -6,4 +6,5 @@ urlspattern=[
     path('login/', views.LoginView.as_view(template_name=""), name='login'),
     path('logout/', views.LogoutView.as_view(template_name=""), name='logout'),
     path('register/', views.register, name='register'),
+    path('admin-view/', views.admin_view, name='admin-view'),
 ]
