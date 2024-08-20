@@ -9,10 +9,10 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
-def role_check(user):
-    return user.userprofile.role
+def role_check(user, role):
+    return user.userprofile.role == role
 
-@user_passes_test(role_check(user) == "Admin")
+@user_passes_test(role_check(user, "Admin"))
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
@@ -21,6 +21,7 @@ def bookslist(request):
     
     return render(request, "relationship_app/list_books.html")
 
+@permission_required(relationship_app.can_add_book)
 @user_passes_test(Admin)
 class LibraryDetailView(DetailView):
     model = Library
@@ -32,6 +33,7 @@ class LibraryDetailView(DetailView):
         context['books'] = self.object.books.all()
         return context
 @user_passes_test(Admin)
+@permission_required('relationship_app.can_add_book')
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

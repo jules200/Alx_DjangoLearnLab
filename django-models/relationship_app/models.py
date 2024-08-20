@@ -34,6 +34,12 @@ class Book(models.Model):
         verbose_name = 'Book'
         verbose_name_plural = 'Books'
         
+        permissions = [
+            ("can_add_book", "Can add book"),
+            ("can_change_book", "Can change book"),
+            ("can_delete_book", "Can delete book"),
+        ]
+        
 class Library(models.Model):
     name = models.CharField(max_length=50)
     books = models.ManyToManyField(Book, null=False)
