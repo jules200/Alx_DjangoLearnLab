@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import permission_required, login_required, 
 
 # Create your views here.
 def role_check(user, role):
-    return user.UserProfile.role == role
+    return user.userprofile.role == role
 
 @user_passes_test(role_check(user, "Admin"))
 def admin_view(request):
