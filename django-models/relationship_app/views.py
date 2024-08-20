@@ -34,6 +34,8 @@ class LibraryDetailView(DetailView):
         return context
 @user_passes_test(Admin)
 @permission_required('relationship_app.can_add_book')
+@permission_required('relationship_app.can_change_book')
+@permission_required('relationship_app.can_delete_book')
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
