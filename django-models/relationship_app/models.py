@@ -2,14 +2,15 @@ from django.db import models
 
 # Create your models here.
 
-ROLE_CHOICES = [
-    ('Admin', 'Admin'),
-    ('Librarian', 'Librarian'),
-    ('Member', 'Member')
-]
+
 
 
 class UserProfile(models.Model):
+    ROLE_CHOICES = [
+        ('Admin', 'Admin'),
+        ('Librarian', 'Librarian'),
+        ('Member', 'Member')
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=10, choices=ROLE_CHOICES)
 
