@@ -46,3 +46,9 @@ class Book(models.Model):
         managed = True
         verbose_name = 'Book'
         verbose_name_plural = 'Books'
+        
+        permissions=[
+            ("can_view", "user can view"),
+            ("can_edit", "user can edit"),
+            ("can_add", "user can add"),
+        ]
