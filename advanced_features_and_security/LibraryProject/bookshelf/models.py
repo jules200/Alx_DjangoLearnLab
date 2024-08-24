@@ -48,7 +48,7 @@ class Book(models.Model):
         verbose_name_plural = 'Books'
         
         permissions=[
-            ("can_view", "user can view"),
+            ("can_create", "can_delete"),
             ("can_edit", "user can edit"),
-            ("can_add", "user can add"),
+            ("can_view", "user can add"),
         ]
