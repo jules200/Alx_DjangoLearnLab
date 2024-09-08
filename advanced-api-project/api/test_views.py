@@ -10,6 +10,8 @@ class BookAPITest(TestCase):
         self.client = APIClient()
         self.author = Author.objects.create(name="J.K. Rowling")
         self.book = Book.objects.create(title="Harry Potter", publication_year=1997, author=self.author)
+        
+        return self.client.login
 
 def test_create_book(self):
     data = {
