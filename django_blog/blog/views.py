@@ -18,9 +18,10 @@ class UserLogoutView(LogoutView):
     template_name = 'blog/logout.html'
     
 class UserRegisterView(CreateView):
-    form_class = CustomUserCreationForm
-    template_name = 'blog/register.html'
-    success_url = reverse_lazy('login')
+    if request.method == "POST":
+        form_class = CustomUserCreationForm
+        template_name = 'blog/register.html'
+        success_url = reverse_lazy('login')
     
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'blog/profile.html'
