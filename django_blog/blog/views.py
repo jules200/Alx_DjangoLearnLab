@@ -11,6 +11,7 @@ from .forms import UserUpdateForm
 from .models import Post
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 class UserLoginView(LoginView):
     template_name = 'blog/login.html'
@@ -126,3 +127,13 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.author
+    
+def search(request):
+    query = request.GET.get('q')
+    results = Post.objects.filter(
+        Q(title__icontains=query) | 
+        Q(content__icontains=query) |
+        Q(tags__name__icontains=query)  # If using django-taggit
+    ).distinct()
+    
+    return render(request, 'blog/search_results.html', {'results': results, 'query': query})

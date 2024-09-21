@@ -5,9 +5,13 @@ from .models import Post
 from .models import Comment
 
 class PostForm(forms.ModelForm):
+    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False)
     class Meta:
         model = Post
         fields = ['title', 'content']  # Fields for title and content
+        widgets = {
+            'tags': TagWidget(),  # Optional: A nicer tag input widget
+        }
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
