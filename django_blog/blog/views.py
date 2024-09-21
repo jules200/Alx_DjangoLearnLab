@@ -10,6 +10,7 @@ from django.views.generic.edit import UpdateView
 from .forms import UserUpdateForm
 from .models import Post
 from .forms import PostForm
+from django.contrib.auth.decorators import login_required
 
 class UserLoginView(LoginView):
     template_name = 'blog/login.html'
