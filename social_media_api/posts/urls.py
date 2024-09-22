@@ -11,5 +11,7 @@ urlpatterns = [
     path('api/', include('posts.urls')),
     path('feed/', FeedView.as_view(), name='user-feed'),
     path('api/accounts/', include('accounts.urls')),  # Follow and Unfollow URLs
-    path('api/posts/', include('posts.urls')),  
+    path('api/posts/', include('posts.urls')),
+    path('<int:pk>/like/', LikePostView.as_view(), name='like-post'),
+    path('<int:pk>/unlike/', UnlikePostView.as_view(), name='unlike-post'),
 ]
