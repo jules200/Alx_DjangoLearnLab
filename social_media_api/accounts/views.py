@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 from accounts.serializers import CustomUserSerializer
 from django.shortcuts import get_object_or_404
 
-generics.GenericAPIView
+generics.GenericAPIView, permissions.IsAuthenticated
 class RegisterView(APIView):
     def post(self, request):
         serializer = CustomUserSerializer(data=request.data)
