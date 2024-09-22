@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from accounts.serializers import CustomUserSerializer
 from django.shortcuts import get_object_or_404
 
+generics.GenericAPIView
 class RegisterView(APIView):
     def post(self, request):
         serializer = CustomUserSerializer(data=request.data)
@@ -29,6 +30,7 @@ class FollowUserView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, user_id):
+        user = CustomUser.objects.all()
         user_to_follow = get_object_or_404(CustomUser, id=user_id)
         request.user.follow(user_to_follow)
         return Response({'status': 'followed'}, status=status.HTTP_200_OK)
